@@ -1,0 +1,24 @@
+build:
+    dependencies:
+        before:
+          - pip install etlt
+          - pip install pytz
+
+    tests:
+        override:
+            -
+                command: python -m unittest discover -s test -p *Test.py
+
+checks:
+    python:
+        code_rating: true
+        duplicate_code: true
+
+filter:
+    excluded_paths:
+        - test/*
+
+tools:
+    pylint:
+        python_version: '3'
+        config_file: pylintrc

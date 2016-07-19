@@ -1,0 +1,8 @@
+/.idea/
+/bin/
+/composer.lock
+/dist/
+/ETLT_pgSQL.egg-info/
+/test/writer/PgSqlLoaderWriterTest/test_types.csv
+/vendor/
+*.pyc
