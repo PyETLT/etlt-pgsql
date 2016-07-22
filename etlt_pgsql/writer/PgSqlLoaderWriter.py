@@ -81,7 +81,7 @@ class PgSqlLoaderWriter(SqlLoaderWriter):
             file.write("'")
 
     # ------------------------------------------------------------------------------------------------------------------
-    def write(self, row):
+    def writerow(self, row):
         """
         Writes a row to the destination file.
 
