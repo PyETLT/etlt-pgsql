@@ -10,7 +10,7 @@ here = path.abspath(path.dirname(__file__))
 setup(
     name='ETLT-pgSQL',
 
-    version='0.0.3',
+    version='0.0.4',
 
     description='ETLT extension for MariaDB and MySQL databases',
     # long_description=long_description,
