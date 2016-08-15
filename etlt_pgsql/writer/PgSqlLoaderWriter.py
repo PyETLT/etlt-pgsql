@@ -44,6 +44,28 @@ class PgSqlLoaderWriter(SqlLoaderWriter):
 
     # ------------------------------------------------------------------------------------------------------------------
     @staticmethod
+    def write_decimal(value, file):
+        """
+        Writes a decimal as a field to a CSV file.
+
+        :param decimal.Decimal value: The decimal.
+        :param T file: The file.
+        """
+        file.write(str(value))
+
+    # ------------------------------------------------------------------------------------------------------------------
+    @staticmethod
+    def write_float(value, file):
+        """
+        Writes a float as a field to a CSV file.
+
+        :param float value: The float.
+        :param T file: The file.
+        """
+        file.write(str(value))
+
+    # ------------------------------------------------------------------------------------------------------------------
+    @staticmethod
     def write_int(value, file):
         """
         Writes an integer as a field to a CSV file.
@@ -81,6 +103,17 @@ class PgSqlLoaderWriter(SqlLoaderWriter):
             file.write("'")
 
     # ------------------------------------------------------------------------------------------------------------------
+    @staticmethod
+    def write_uuid(value, file):
+        """
+        Writes a UUID as a field to a CSV file.
+
+        :param uuid.UUID value: The UUID.
+        :param T file: The file.
+        """
+        PgSqlLoaderWriter.write_string(str(value), file)
+
+    # ------------------------------------------------------------------------------------------------------------------
     def writerow(self, row):
         """
         Writes a row to the destination file.
@@ -114,8 +147,11 @@ class PgSqlLoaderWriter(SqlLoaderWriter):
 
 
 # ----------------------------------------------------------------------------------------------------------------------
-PgSqlLoaderWriter.register_handler("<class 'int'>", PgSqlLoaderWriter.write_int)
-PgSqlLoaderWriter.register_handler("<class 'str'>", PgSqlLoaderWriter.write_string)
-PgSqlLoaderWriter.register_handler("<class 'NoneType'>", PgSqlLoaderWriter.write_none)
 PgSqlLoaderWriter.register_handler("<class 'datetime.date'>", PgSqlLoaderWriter.write_date)
 PgSqlLoaderWriter.register_handler("<class 'datetime.datetime'>", PgSqlLoaderWriter.write_datetime)
+PgSqlLoaderWriter.register_handler("<class 'decimal.Decimal'>", PgSqlLoaderWriter.write_decimal)
+PgSqlLoaderWriter.register_handler("<class 'float'>", PgSqlLoaderWriter.write_float)
+PgSqlLoaderWriter.register_handler("<class 'int'>", PgSqlLoaderWriter.write_int)
+PgSqlLoaderWriter.register_handler("<class 'NoneType'>", PgSqlLoaderWriter.write_none)
+PgSqlLoaderWriter.register_handler("<class 'str'>", PgSqlLoaderWriter.write_string)
+PgSqlLoaderWriter.register_handler("<class 'uuid.UUID'>", PgSqlLoaderWriter.write_uuid)
