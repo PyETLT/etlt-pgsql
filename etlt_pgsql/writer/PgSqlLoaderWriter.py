@@ -44,6 +44,17 @@ class PgSqlLoaderWriter(SqlLoaderWriter):
 
     # ------------------------------------------------------------------------------------------------------------------
     @staticmethod
+    def write_timedelta(value, file):
+        """
+        Writes a timedelta as a field to a CSV file.
+
+        :param datetime.timedelta value: The timedelta.
+        :param T file: The file.
+        """
+        PgSqlLoaderWriter.write_string(str(value), file)
+
+    # ------------------------------------------------------------------------------------------------------------------
+    @staticmethod
     def write_decimal(value, file):
         """
         Writes a decimal as a field to a CSV file.
@@ -149,6 +160,7 @@ class PgSqlLoaderWriter(SqlLoaderWriter):
 # ----------------------------------------------------------------------------------------------------------------------
 PgSqlLoaderWriter.register_handler("<class 'datetime.date'>", PgSqlLoaderWriter.write_date)
 PgSqlLoaderWriter.register_handler("<class 'datetime.datetime'>", PgSqlLoaderWriter.write_datetime)
+PgSqlLoaderWriter.register_handler("<class 'datetime.timedelta'>", PgSqlLoaderWriter.write_timedelta)
 PgSqlLoaderWriter.register_handler("<class 'decimal.Decimal'>", PgSqlLoaderWriter.write_decimal)
 PgSqlLoaderWriter.register_handler("<class 'float'>", PgSqlLoaderWriter.write_float)
 PgSqlLoaderWriter.register_handler("<class 'int'>", PgSqlLoaderWriter.write_int)
