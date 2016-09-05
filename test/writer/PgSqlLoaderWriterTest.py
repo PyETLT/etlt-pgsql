@@ -23,8 +23,19 @@ class PgSqlLoaderWriterTest(unittest.TestCase):
         filename_expected = path.abspath(path.dirname(__file__)) + '/PgSqlLoaderWriterTest/test_types.expected.csv'
 
         writer = PgSqlLoaderWriter(filename_actual)
-        writer.fields = ['date', 'datetime', 'timedelta', 'decimal', 'empty', 'float', 'int', 'none', 'str', 'uuid']
-        rows = [{'date':      datetime.date(1994, 1, 1),
+        writer.fields = ['bool',
+                         'date',
+                         'datetime',
+                         'timedelta',
+                         'decimal',
+                         'empty',
+                         'float',
+                         'int',
+                         'none',
+                         'str',
+                         'uuid']
+        rows = [{'bool':      False,
+                 'date':      datetime.date(1994, 1, 1),
                  'datetime':  datetime.datetime(1994, 1, 1, 23, 15, 30),
                  'timedelta': datetime.timedelta(days=1, seconds=12345, microseconds=1),
                  'decimal':   Decimal('0.1428571428571428571428571429'),
@@ -34,7 +45,8 @@ class PgSqlLoaderWriterTest(unittest.TestCase):
                  'none':      None,
                  'str':       'Ministry of Silly Walks',
                  'uuid':      UUID('{12345678-1234-5678-1234-567812345678}')},
-                {'date':      None,
+                {'bool':      True,
+                 'date':      None,
                  'datetime':  datetime.datetime(2016, 1, 1, 23, 15, 30, tzinfo=pytz.timezone('UTC')),
                  'timedelta': datetime.timedelta(),
                  'decimal':   Decimal(1) / Decimal(7),

@@ -19,6 +19,20 @@ class PgSqlLoaderWriter(SqlLoaderWriter):
 
     # ------------------------------------------------------------------------------------------------------------------
     @staticmethod
+    def write_bool(value, file):
+        """
+        Writes a boolean as a field to a CSV file.
+
+        :param bool value: The boolean.
+        :param T file: The file.
+        """
+        if value:
+            file.write('1')
+        else:
+            file.write('0')
+
+    # ------------------------------------------------------------------------------------------------------------------
+    @staticmethod
     def write_date(value, file):
         """
         Writes a date as a field to a CSV file.
@@ -158,6 +172,7 @@ class PgSqlLoaderWriter(SqlLoaderWriter):
 
 
 # ----------------------------------------------------------------------------------------------------------------------
+PgSqlLoaderWriter.register_handler("<class 'bool'>", PgSqlLoaderWriter.write_bool)
 PgSqlLoaderWriter.register_handler("<class 'datetime.date'>", PgSqlLoaderWriter.write_date)
 PgSqlLoaderWriter.register_handler("<class 'datetime.datetime'>", PgSqlLoaderWriter.write_datetime)
 PgSqlLoaderWriter.register_handler("<class 'datetime.timedelta'>", PgSqlLoaderWriter.write_timedelta)
