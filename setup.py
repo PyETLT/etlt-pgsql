@@ -12,10 +12,10 @@ setup(
 
     version='0.10.0',
 
-    description='ETLT extension for MariaDB and MySQL databases',
+    description='ETLT extension for PostgreSQL databases',
     # long_description=long_description,
 
-    url='https://github.com/SetBased/py-etlt-mysql',
+    url='https://github.com/PyETLT/etlt-pgsql',
 
     author='Paul Water',
     author_email='info@setbased.nl',
